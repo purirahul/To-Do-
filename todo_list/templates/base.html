@@ -1,0 +1,55 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel='stylesheet' href="{% static 'css/mycss.css' %}"
+
+    <title>{% block title %} {% endblock %}</title>
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="{% url 'home' %}">To-Do list</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    {% if user.is_authenticated %}
+    <ul class="navbar-nav mr-auto">
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+      </li>
+
+      <li class="nav-item" class='nav-link'>
+        <div class="dropdown-menu">
+          <h6 class="dropdown-header">&nbsp &nbspHello, {{ user.first_name }}</h6>
+          <a class="dropdown-item" href="#">Change your Profile</a>
+          <a class="dropdown-item" href="#">Change password</a>
+        </div>
+
+      </li>
+    </ul>
+    {% endif %}
+    <form class="form-inline my-2 my-lg-0" method="POST">
+      {% csrf_token %}
+      <input class="form-control mr-sm-2" type="search" placeholder="To-Do item" aria-label="Search" name='item'>
+      <input type='hidden' value='{{ user.id }}' name='user'>
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Add to List</button>
+    </form>
+  </div>
+</nav>
+<div class='container'>
+{% block content %}
+{% endblock %}
+</div>
+</<body>
+</html>

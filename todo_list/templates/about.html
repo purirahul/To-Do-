@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %} To do | About me {% endblock %}
+
+{% block content %}
+<h2 style="color:red" align='center'>   Remaining Tasks </h2>
+<hr>
+{% if all_items %}
+  <ul>
+    {% for task in all_items %}
+      {% if not task.completed %}
+        <li>{{task.item}}  </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+{% endif %}
+{%  endblock %}
