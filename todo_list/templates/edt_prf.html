@@ -1,0 +1,52 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+{% if messages %}
+
+  {% for message in messages %}
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <button class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    {{ message}}
+  </div>
+  {% endfor %}
+{% endif %}
+
+<div class='container'>
+
+<br>
+<h2><center> Edit your Profile </center></h2>
+<br><br>
+<form method='POST'>
+  {% csrf_token %}
+  {% if user.is_authenticated %}
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4"> &nbsp<strong>First Name</strong></label>
+      <input type="text" class="form-control" id="inputEmail4" placeholder="First name" name='first_name' value='{{ user.first_name }}''>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputPassword4"> &nbsp<strong>Last Name</strong></label>
+      <input type="text" class="form-control" id="inputPassword4" placeholder="Last name" name='last_name' value='{{ user.last_name }}'>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputAddress"> &nbsp<strong>Username</strong></label>
+    <input type="text" class="form-control" id="inputAddress" placeholder="Username" name='username' value='{{ user.username }}'>
+  </div>
+  <div class="form-group">
+    <label for="inputAddress2"> &nbsp<strong>Email Address</strong></label>
+    <input type="email" class="form-control" id="inputAddress2" placeholder="Email Address" name='email' value='{{ user.email }}'>
+  </div>
+
+  <div class="form-group">
+    <label for="inputAddress2"> &nbsp<strong>Confirm your Password to edit profile </strong></label>
+    <input type="password" class="form-control" id="inputAddress2" placeholder="Password" name='password1'>
+  </div>
+
+  {% endif %}
+    </div>
+    <br><br>
+
+   <center><button type="submit" class="btn btn-primary btn-lg" >Confirm Edit </button></center>
+</form></div>

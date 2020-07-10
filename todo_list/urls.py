@@ -8,6 +8,8 @@ urlpatterns = [
     path('delete/<list_id>', views.delete, name='delete'),
     path('completed/<list_id>', views.completed, name='completed'),
     path('not_completed/<list_id>', views.not_completed, name='not_completed'),
-    path('edit/<list_id>', views.edit, name='edit')
+    path('edit/<list_id>', views.edit, name='edit'),
+    path('edt_prf/', views.edt_prf, name='edt_prf'),
+    path('ch_pass/', views.ch_pass, name='ch_pass'),
 
 ]

@@ -9,7 +9,8 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel='stylesheet' href="{% static 'css/mycss.css' %}"
+    <link rel='stylesheet' href="{% static 'css/mycss.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <title>{% block title %} {% endblock %}</title>
   </head>
@@ -24,18 +25,25 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     {% if user.is_authenticated %}
     <ul class="navbar-nav mr-auto">
+      <li class="nav-item ">
+      <!--  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Hello, {{ user.username }}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{% url 'home' %}">Action</a>
+          <a class="dropdown-item" href="{% url 'home' %}">Another action</a>
+        </div>-->
 
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
-      </li>
-
-      <li class="nav-item" class='nav-link'>
-        <div class="dropdown-menu">
-          <h6 class="dropdown-header">&nbsp &nbspHello, {{ user.first_name }}</h6>
-          <a class="dropdown-item" href="#">Change your Profile</a>
-          <a class="dropdown-item" href="#">Change password</a>
-        </div>
-
+          <div class="dropdownn">
+            <button class="dropbtn">Hello, {{ user.first_name }}  {{ user.last_name }}
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+              <a href="{% url 'edt_prf' %}"><i class="fa fa-user"></i> &nbsp Edit your Profile</a>
+              <a href="{% url 'ch_pass' %}"><i class="fa fa-lock"></i> &nbsp Change Password</a>
+              <a href="{% url 'logout' %}"><i class="fa fa-power-off" style="font-size:16px"></i> &nbsp Log Out</a>
+            </div>
+          </div>
       </li>
     </ul>
     {% endif %}
